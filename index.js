@@ -28,12 +28,12 @@ client.connect(err => {
   // perform actions on the collection object
   app.post('/addEvent', (req, res) => {
     const event = req.body 
-    console.log('conneted');
+    //console.log('conneted');
     eventCollection.insertOne(event)
     .then(result => {
         console.log(result.insertedCount)
         res.send(result.insertedCount)
-        //res.redirect('/')
+        
         
     })
 })
@@ -51,11 +51,9 @@ app.post('/addSelectedEvent', (req, res) => {
   //console.log(product);
   selectedEventCollection.insertOne(selectedEvent)
   .then(result => {
-      console.log(result.insertedCount)
+      //console.log(result.insertedCount)
       res.send(result.insertedCount > 0)
-      //res.redirect('/')
-      // console.log(result)
-      // res.send(result)
+  
   })
 })
 
@@ -69,13 +67,13 @@ app.get('/volunteerRegList', (req, res) => {
 app.delete('/delete/:id', (req, res) => {
   selectedEventCollection.deleteOne({key: req.params.key})
   .then(result => {
-      console.log(result);
+      //console.log(result);
       res.send(result.modifiedCount > 0)
   })
 })
 
 app.get('/eventSelected', (req, res) => {
-  console.log(req.query.email)
+  //console.log(req.query.email)
   selectedEventCollection.find({email: req.query.email})
   .toArray((err, documents) => {
       res.send(documents)
@@ -87,11 +85,9 @@ app.post('/createEvent', (req, res) => {
   //console.log(product);
   eventCollection.insertOne(createEvent)
   .then(result => {
-      console.log(result.insertedCount)
+      //console.log(result.insertedCount)
       res.send(result.insertedCount > 0)
-      //res.redirect('/')
-      // console.log(result)
-      // res.send(result)
+     
   })
 })
   //client.close();
