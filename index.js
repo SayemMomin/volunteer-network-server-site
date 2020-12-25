@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser')
 var cors = require('cors')
 require('dotenv').config()
-//"start:dev": "nodemon index.js",
+
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.y8hyt.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
