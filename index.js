@@ -27,18 +27,6 @@ client.connect(err => {
  
   const selectedEventCollection = client.db(`${process.env.DB_NAME}`).collection("selectedEvent");
   const adminListCollection = client.db(`${process.env.DB_NAME}`).collection("adminList");
-  // perform actions on the collection object
-//   app.post('/addEvent', (req, res) => {
-//     const event = req.body 
-//     //console.log('conneted');
-//     eventCollection.insertOne(event)
-//     .then(result => {
-//         console.log(result.insertedCount)
-//         res.send(result.insertedCount)
-        
-        
-//     })
-// })
 
 app.get('/events', (req, res) => {
   eventCollection.find({})
@@ -53,7 +41,6 @@ app.post('/addSelectedEvent', (req, res) => {
   console.log(selectedEvent, 'data');
   selectedEventCollection.insertOne(selectedEvent)
   .then(result => {
-      //console.log(result.insertedCount)
       res.send(result.insertedCount > 0)
       
   
@@ -70,7 +57,6 @@ app.get('/volunteerRegList', (req, res) => {
 app.delete('/delete/:id', (req, res) => {
   selectedEventCollection.deleteOne({key: req.params.key})
   .then(result => {
-      //console.log(result);
       res.send(result.modifiedCount > 0)
   })
 })
@@ -85,10 +71,8 @@ app.get('/eventSelected', (req, res) => {
 
 app.post('/createEvent', (req, res) => {
   const createEvent = req.body 
-  //console.log(product);
   eventCollection.insertOne(createEvent)
   .then(result => {
-      //console.log(result.insertedCount)
       res.send(result.insertedCount > 0)
      
   })
@@ -96,7 +80,6 @@ app.post('/createEvent', (req, res) => {
   
 app.post('/makeAdmin', (req, res) => {
   const admins = req.body;
-  //console.log(admins)
   adminListCollection.insertOne(admins)
   .then(result => {
     res.send(result.insertedCount)
@@ -108,7 +91,7 @@ app.post('/isAdmin', (req, res) => {
   adminListCollection.find({ email: email })
       .toArray((err, documents) => {
            res.send(documents.length > 0);
-          //console.log(documents)
+         
       })
 })
 
